@@ -14,6 +14,7 @@ initialize();
 //------------------------------------------------------------------------------//
 //initialize()
 function initialize() {
+    fb_init();
     fb_addWriteListener('messages/message', cb_updateDatabaseText);
 }
 //------------------------------------------------------------------------------//
