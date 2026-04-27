@@ -34,11 +34,38 @@
     firebase to see the effect.</p>
   <p> Task 1: change the message in fb_helloWorld() to "Kia ora te ao"</p>
   <p> Task 2: create another button that changes the message to "Goodbye/ka kite āno"</p>
-  <button onclick="fb_write('messages/', 'kia ora')">Hello world</button>
-  <button onclick="fb_write('messages/', 'ka kite ano')">Goodbye world</button>
+  <button onclick="fb_write('messages/message-1', '', 'kia ora')">Write: 'kia ora'</button>
+  <button onclick="fb_write('messages/message-1', '', 'ka kite ano')">Write: 'ka kite ano'</button>
+  <br>
+  <button onclick="fb_addWriteListener('messages/message-1', cb_updateDatabaseText)">Add Listener</button>
+  <br>
+  <button onclick="
+    addHighScore('Jeff', 1000); 
+    addHighScore('Jeremy', 2000); 
+    addHighScore('Joseph', 3000);
+  ">Add Default High Scores</button>
+  <br>
+
+  <p>Input username and high score:</p>
+  <input type="text" id="i_username">
+  <input type="number" id="i_hiscore">
+
+  <button onclick="addHighScoreFromDocument();">Add High Score</button>
+  <button onclick="displayHighScoreFromDocument();">Display High Score</button>
+
+  <br>
+  <button onclick="displayHighScoreTable();">Display All High Scores</button>
+
 
   <h2>Output</h2>
-  <div id="databaseOutput"></div>
+  <p>From messages:</p>
+  <div class="databaseOutput" id="databaseOutput"></div>
+  <br>
+
+  <p>High score outputs:</p>
+  <div class="databaseOutput" id="o_single_hiscore"></div>
+  <br>
+  <div class="databaseOutput" id="o_hiscore_table"></div>
 
   <script src="./scripts/core/main.js"></script>
 
