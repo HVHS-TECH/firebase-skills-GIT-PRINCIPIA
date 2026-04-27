@@ -122,6 +122,12 @@ async function displayHighScoreTable() {
 
         for (var i = 0; i < SPLIT_TEXT_ARR.length; i++){
             var data = SPLIT_TEXT_ARR[i];
+            //Data is any of:
+            //{"key":val
+            //{"key":val}
+            //"key":val}
+            //"key": val
+            
             //Remove brackets
             data = data.replaceAll('{', '');
             data = data.replaceAll('}', '');
