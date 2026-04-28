@@ -50,9 +50,18 @@
   <input type="text" id="i_username">
   <input type="number" id="i_hiscore">
 
-  <button onclick="addHighScoreFromDocument();">Add High Score</button>
+  <button onclick="addHighScoreFromDocument();">Add User</button>
   <button onclick="displayHighScoreFromDocument();">Display High Score</button>
 
+  <br>
+  <p>Sort high scores:</p>
+  <form>
+    <input type="radio" id="i_sort_name" name="sort" value="name" checked>
+    <label for="i_sort_name">- by name</label><br>
+    <input type="radio" id="i_sort_score" name="sort" value="score">
+    <label for="i_sort_score">- by score</label><br>
+  </form>
+  
   <br>
   <button onclick="displayHighScoreTable();">Display All High Scores</button>
 

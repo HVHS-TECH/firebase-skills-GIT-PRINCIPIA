@@ -15,6 +15,8 @@ const HIGH_SCORE_LIST = "high-scores/";
 const HTML_HIGH_SCORE_O_SINGLE = document.getElementById("o_single_hiscore");
 const HTML_HIGH_SCORE_TABLE = document.getElementById("o_hiscore_table");
 
+const HTML_SORT_NAME = document.getElementById("i_sort_name");
+const HTML_SORT_SCORE = document.getElementById("i_sort_score");
 
 initialize();
 
@@ -59,7 +61,12 @@ function addHighScore(name, score) {
 function addHighScoreFromDocument() {
     const SCORE = HTML_HIGH_SCORE.value;
     const USERNAME = HTML_USERNAME.value;
-
+    if (USERNAME == "") {
+        //Attempting to write to the ENTIRE list
+        //If we did not have this check, the high score list would be overwritten by whatever is in SCORE
+        console.error("addHighScoreFromDocument() :: attempting to overwrite the entire high score list with '" + SCORE + "'. Aborting.");
+        return;
+    }
     addHighScore(USERNAME, SCORE);
 }
 //------------------------------------------------------------------------------//
@@ -112,13 +119,7 @@ async function displayHighScoreTable() {
 
         const SPLIT_TEXT_ARR = TEXT.split(','); //Split into key - value pairs
 
-        var html_table_text = "";
-
-        //Add table tag
-        html_table_text += "<table>";
-
-        //Add header
-        html_table_text += "<tr><th>Name</th><th>Score</th></tr>"
+        var key_val_pairs = [];
 
         for (var i = 0; i < SPLIT_TEXT_ARR.length; i++){
             var data = SPLIT_TEXT_ARR[i];
@@ -127,7 +128,7 @@ async function displayHighScoreTable() {
             //{"key":val}
             //"key":val}
             //"key": val
-            
+
             //Remove brackets
             data = data.replaceAll('{', '');
             data = data.replaceAll('}', '');
@@ -142,13 +143,36 @@ async function displayHighScoreTable() {
             //Split by colon
             const KEY_VAL_PAIR = data.split(':');
 
-            //Element 0 is the key
-            //Element 1 is the value
+            key_val_pairs.push(KEY_VAL_PAIR);
+        }
 
-            const KEY = KEY_VAL_PAIR[0]; //Username
-            const VAL = KEY_VAL_PAIR[1]; //Score
+        //Sort data
+        var sort_name = HTML_SORT_NAME.checked;
+        if (sort_name) {
+            //Sort by name
+            key_val_pairs.sort((a,b) => {
+                return a[0].localeCompare(b[0]);
+            });
+        } else {
+            //Sort by score
+            key_val_pairs.sort((a,b) => {
+                return b[1] - a[1];
+            });
+        }
+        
 
-            html_table_text += "<tr><td>" + KEY + "</td><td>" + VAL + "</td></tr>";
+
+        var html_table_text = "";
+
+        //Add table tag
+        html_table_text += "<table>";
+
+        //Add header
+        html_table_text += "<tr><th>Name</th><th>Score</th></tr>"
+
+        //Add key value pairs
+        for (var i = 0; i < key_val_pairs.length; i++) {
+            html_table_text += "<tr><td>" + key_val_pairs[i][0] + "</td><td>" + key_val_pairs[i][1] + "</td></tr>";
         }
 
         //Add closing table tag
