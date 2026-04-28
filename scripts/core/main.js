@@ -96,7 +96,7 @@ async function getHighScore(name) {
 //displaySingleHighScore(name)
 async function displaySingleHighScore(name) {
     const SCORE = Number(await getHighScore(name));
-    if (typeof SCORE == 'number') {
+    if (typeof SCORE == 'number' && name != "" && SCORE != NaN) {
         const TEXT = "Name: " + name + ", high score: " + SCORE;
 
         HTML_HIGH_SCORE_O_SINGLE.innerHTML = TEXT;
