@@ -24,20 +24,19 @@
 
 <body>
 
-  <a href="about.html">Read me first</a>
-
-  All of the output from firebase goes to the console, open it up now (ctrl - shift - i)
-
-  <h2>Hello world - a minimal write</h2>
-  <p>This button overwrites your entire database with the key/value pair Message : "Hello World" using the <a
-      href="https://firebase.google.com/docs/database/web/read-and-write#basic_write">set()</a> operation. Look in
-    firebase to see the effect.</p>
-  <p> Task 1: change the message in fb_helloWorld() to "Kia ora te ao"</p>
-  <p> Task 2: create another button that changes the message to "Goodbye/ka kite āno"</p>
-  <button onclick="fb_write('messages/message-1', '', 'kia ora')">Write: 'kia ora'</button>
-  <button onclick="fb_write('messages/message-1', '', 'ka kite ano')">Write: 'ka kite ano'</button>
+  <button onclick="fb_write('messages/message-1', '', 'kia ora')">Message: 'kia ora'</button>
+  <button onclick="fb_write('messages/message-1', '', 'ka kite ano')">Message: 'ka kite ano'</button>
   <br>
-  <button onclick="fb_addWriteListener('messages/message-1', cb_updateDatabaseText)">Add Listener</button>
+  <button id="i_add_listener" onclick="
+    fb_addWriteListener('messages/message-1', cb_updateDatabaseText); 
+    var self = document.getElementById('i_add_listener');
+    self.disabled = true;
+
+    var singleRead = document.getElementById('i_single_read');
+    singleRead.disabled = true;
+    ">Add Listener</button> 
+  OR
+  <button id="i_single_read" onclick="fb_read('messages/message-1', cb_updateDatabaseText);">Update Message Output</button>
   <br>
   <button onclick="
     addHighScore('Jeff', 1000); 
