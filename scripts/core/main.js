@@ -50,6 +50,14 @@ function cb_updateDatabaseText(val) {
 //addHighScore(name, score)
 function addHighScore(name, score) {
     console.log("addHighScore(name, score) :: adding " + name + "'s high score of " + score);
+    if (name == "") {
+        //Attempting to write to the ENTIRE list
+        //If we did not have this check, the high score list would be overwritten by whatever is in SCORE
+        console.error("addHighScore(name, score) :: attempting to overwrite the entire high score list with '" + score + "'. Aborting.");
+        console.warn("addHighScoreFromDocument() :: aborting after attempt to overwrite high score list with: '" + score + "'");
+        console.warn("Attempting to convert to string from JSON: '" + JSON.stringify(score) + "'");
+        return;
+    }
     fb_write(HIGH_SCORE_LIST + name, "", score);
 }
 //------------------------------------------------------------------------------//
@@ -65,6 +73,8 @@ function addHighScoreFromDocument() {
         //Attempting to write to the ENTIRE list
         //If we did not have this check, the high score list would be overwritten by whatever is in SCORE
         console.error("addHighScoreFromDocument() :: attempting to overwrite the entire high score list with '" + SCORE + "'. Aborting.");
+        console.warn("addHighScoreFromDocument() :: aborting after attempt to overwrite high score list with: '" + SCORE + "'");
+        console.warn("Attempting to convert to string from JSON: '" + JSON.stringify(SCORE) + "'");
         return;
     }
     addHighScore(USERNAME, SCORE);
@@ -75,7 +85,7 @@ function addHighScoreFromDocument() {
 //------------------------------------------------------------------------------//
 //getHighScore(name)
 async function getHighScore(name) {
-    var score = await fb_read(HIGH_SCORE_LIST + "/" + name);
+    var score = await fb_read(HIGH_SCORE_LIST + name);
     
     return score;
 }
@@ -85,7 +95,7 @@ async function getHighScore(name) {
 //------------------------------------------------------------------------------//
 //displaySingleHighScore(name)
 async function displaySingleHighScore(name) {
-    const SCORE = await getHighScore(name);
+    const SCORE = Number(await getHighScore(name));
     if (typeof SCORE == 'number') {
         const TEXT = "Name: " + name + ", high score: " + SCORE;
 

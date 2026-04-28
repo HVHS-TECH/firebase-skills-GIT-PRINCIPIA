@@ -23,17 +23,17 @@
 </head>
 
 <body>
-
+  <h1>Please try and break it!</h1>
   <button onclick="fb_write('messages/message-1', '', 'kia ora')">Message: 'kia ora'</button>
   <button onclick="fb_write('messages/message-1', '', 'ka kite ano')">Message: 'ka kite ano'</button>
   <br>
   <button id="i_add_listener" onclick="
     fb_addWriteListener('messages/message-1', cb_updateDatabaseText); 
     var self = document.getElementById('i_add_listener');
-    self.disabled = true;
+    self.disabled = true; //Disable the button
 
     var singleRead = document.getElementById('i_single_read');
-    singleRead.disabled = true;
+    singleRead.disabled = true; //Disable the button
     ">Add Listener</button> 
   OR
   <button id="i_single_read" onclick="fb_read('messages/message-1', cb_updateDatabaseText);">Update Message Output</button>
@@ -55,14 +55,23 @@
   <br>
   <p>Sort high scores:</p>
   <form>
-    <input type="radio" id="i_sort_name" name="sort" value="name" checked>
+    <input onchange="displayHighScoreTable()" type="radio" id="i_sort_name" name="sort" value="name" checked>
     <label for="i_sort_name">- by name</label><br>
-    <input type="radio" id="i_sort_score" name="sort" value="score">
+    <input onchange="displayHighScoreTable()" type="radio" id="i_sort_score" name="sort" value="score">
     <label for="i_sort_score">- by score</label><br>
   </form>
   
   <br>
-  <button onclick="displayHighScoreTable();">Display All High Scores</button>
+  <button id="i_display_hiscore_table" onclick="displayHighScoreTable();">Display All High Scores</button>
+  OR
+  <button id="i_add_hiscore_listener" onclick="
+    fb_addWriteListener('high-scores/', displayHighScoreTable);
+    var self = document.getElementById('i_add_hiscore_listener');
+    self.disabled = true; //Disable the button
+
+    var displayTableButton = document.getElementById('i_display_hiscore_table');
+    displayTableButton.disabled = true; //Disable the button
+  ">Add listener</button>
 
 
   <h2>Output</h2>

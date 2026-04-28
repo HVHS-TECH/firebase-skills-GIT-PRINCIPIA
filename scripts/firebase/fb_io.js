@@ -90,7 +90,7 @@ function fb_addWriteListener(path, cb) {
     }
     if (!isNewPath && !isNewCb) {
         //The exact same write listener (same path, same callback) already exists
-        console.error("fb_addWriteListener(path, cb) :: there is already a write listener at path '" + path + "' with the same callback.");
+        console.error("fb_addWriteListener(path, cb) :: there is already a write listener at path '" + path + "' with the callback: " + cb.toString());
         console.warn("fb_addWriteListener(path, cb) :: attempted to add a duplicate write listener, aborting.");
         return;
     }
