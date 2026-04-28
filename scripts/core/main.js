@@ -86,10 +86,12 @@ async function getHighScore(name) {
 //displaySingleHighScore(name)
 async function displaySingleHighScore(name) {
     const SCORE = await getHighScore(name);
+    if (typeof SCORE == 'number') {
+        const TEXT = "Name: " + name + ", high score: " + SCORE;
 
-    const TEXT = "Name: " + name + ", high score: " + SCORE;
-
-    HTML_HIGH_SCORE_O_SINGLE.innerHTML = TEXT;
+        HTML_HIGH_SCORE_O_SINGLE.innerHTML = TEXT;
+    }
+    
 }
 //------------------------------------------------------------------------------//
 
