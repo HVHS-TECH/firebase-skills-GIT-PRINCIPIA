@@ -2,13 +2,68 @@ html {
   height: 100%;
   width: 100%;
 }
+body {
+  background-color: rgb(13, 22, 51);
+  color: rgb(255, 244, 201);
+  display: flex;
+  flex-direction: column;
+}
+button, h1, h2, p, input, form, label, div {
+  display: flex;
+  justify-self: center;
+  align-self: center;
+  margin:5px;
+  padding: 0px;
+  
+}
+
+h1, h2 {
+  border-bottom: solid 2px rgb(255, 244, 201);
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  border-top: solid 2px rgb(255, 244, 201);
+  border-bottom: solid 2px rgb(255, 244, 201);
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  border-left: solid 2px rgb(255, 244, 201);
+  border-right: solid 2px rgb(255, 244, 201);
+}
+
+h1 {
+  font-size: 100px;
+}
+
+h2 {
+  font-size: 50px;
+}
+
+button, input {
+  background-color: rgb(14, 74, 77);
+  color: rgb(255, 244, 201);
+  padding: 5px;
+}
+
+button:hover {
+  background-color: rgb(30, 69, 95);
+}
+
+button:active {
+  background-color: rgb(50, 141, 141);
+}
+
 .databaseOutput {
-  border: 1px solid black;
+  border: 1px solid rgb(255, 244, 201);
   padding: 10px;
 }
 
 table, td, tr {
-  border: 1px solid black;
+  border: 1px solid rgb(255, 244, 201);
   padding: 5px 10px 5px 10px;
   text-align: center;
 }

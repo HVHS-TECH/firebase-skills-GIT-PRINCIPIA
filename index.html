@@ -19,70 +19,114 @@
   <!-- firebase end ******************************************-->
   <script src="./scripts/firebase/fb_setup.js"></script>
   <script src="./scripts/firebase/fb_io.js"></script>
+  <script src="./scripts/firebase/fb_login.js"></script>
 
 </head>
 
 <body>
   <h1>Please try and break it!</h1>
-  <button onclick="fb_write('messages/message-1', '', 'kia ora')">Message: 'kia ora'</button>
-  <button onclick="fb_write('messages/message-1', '', 'ka kite ano')">Message: 'ka kite ano'</button>
-  <br>
-  <button id="i_add_listener" onclick="
-    fb_addWriteListener('messages/message-1', cb_updateDatabaseText); 
-    var self = document.getElementById('i_add_listener');
-    self.disabled = true; //Disable the button
-
-    var singleRead = document.getElementById('i_single_read');
-    singleRead.disabled = true; //Disable the button
-    ">Add Listener</button> 
-  OR
-  <button id="i_single_read" onclick="fb_read('messages/message-1', cb_updateDatabaseText);">Update Message Output</button>
-  <br>
-  <button onclick="
-    addHighScore('Jeff', 1000); 
-    addHighScore('Jeremy', 2000); 
-    addHighScore('Joseph', 3000);
-  ">Reset Default High Scores</button>
-  <br>
-
-  <p>Input username and high score:</p>
-  <input type="text" id="i_username">
-  <input type="number" id="i_hiscore">
-
-  <button onclick="addHighScoreFromDocument();">Add High Score</button>
-  <button onclick="displayHighScoreFromDocument();">Display High Score</button>
 
   <br>
-  <p>Sort high scores:</p>
-  <form>
-    <input onchange="displayHighScoreTable()" type="radio" id="i_sort_name" name="sort" value="name" checked>
-    <label for="i_sort_name">- by name</label><br>
-    <input onchange="displayHighScoreTable()" type="radio" id="i_sort_score" name="sort" value="score">
-    <label for="i_sort_score">- by score</label><br>
-  </form>
+  <br>
+
+  <div class="column">
+    <h2>Messages:</h2>
+    <div class="row">
+      <div class="column">
+        <button onclick="fb_write('messages/message-1', '', 'kia ora')">Message: 'kia ora'</button>
+        <button onclick="fb_write('messages/message-1', '', 'ka kite ano')">Message: 'ka kite ano'</button>
+        <p>From messages:</p>
+        <div class="databaseOutput" id="databaseOutput"></div>
+      </div>
+      <p>
+      <button id="i_add_listener" onclick="
+        fb_addWriteListener('messages/message-1', cb_updateDatabaseText); 
+        var self = document.getElementById('i_add_listener');
+        self.disabled = true; //Disable the button
+
+        var singleRead = document.getElementById('i_single_read');
+        singleRead.disabled = true; //Disable the button
+        ">Add Listener</button> 
+
+      OR
+
+      <button id="i_single_read" onclick="fb_read('messages/message-1', cb_updateDatabaseText);">Update Message Output</button>
+      </p>
+      
+    </div>
+  </div>
   
   <br>
-  <button id="i_display_hiscore_table" onclick="displayHighScoreTable();">Display All High Scores</button>
-  OR
-  <button id="i_add_hiscore_listener" onclick="
-    fb_addWriteListener('high-scores/', displayHighScoreTable);
-    var self = document.getElementById('i_add_hiscore_listener');
-    self.disabled = true; //Disable the button
-
-    var displayTableButton = document.getElementById('i_display_hiscore_table');
-    displayTableButton.disabled = true; //Disable the button
-  ">Add listener</button>
-
-
-  <h2>Output</h2>
-  <p>From messages:</p>
-  <div class="databaseOutput" id="databaseOutput"></div>
   <br>
-
-  <p>High score outputs:</p>
-  <div class="databaseOutput" id="o_single_hiscore"></div>
   <br>
-  <div class="databaseOutput" id="o_hiscore_table"></div>
+  <br>
+  <br>
+  
+
+
+    
+
+  <div class="column">
+    <h2>High Scores:</h2>
+    <div class="row">
+      <div class="column">
+        <p>Input username and high score, or <button onclick="fb_login()">Log In With Google</button></p>
+        <input type="text" id="i_username">
+        <input type="number" id="i_hiscore">
+      </div>
+
+      <div class="column">
+        <button onclick="addHighScoreFromDocument();">Add High Score</button>
+
+        <button onclick="displayHighScoreFromDocument();">Display High Score</button>
+        <button id="i_display_hiscore_table" onclick="displayHighScoreTable();">Display All High Scores</button>
+        <button id="i_add_hiscore_listener" onclick="
+          fb_addWriteListener('high-scores/', displayHighScoreTable);
+          var self = document.getElementById('i_add_hiscore_listener');
+          self.disabled = true; //Disable the button
+
+          var displayTableButton = document.getElementById('i_display_hiscore_table');
+          displayTableButton.disabled = true; //Disable the button
+        ">Add listener</button>
+        
+        <button onclick="
+          addHighScore('Jeff', 1000); 
+          addHighScore('Jeremy', 2000); 
+          addHighScore('Joseph', 3000);
+        ">Reset Default High Scores</button>
+      </div>
+      
+      
+    </div>
+    
+
+    <br>
+    <p>Sort high scores:</p>
+    <form>
+      <input onchange="displayHighScoreTable()" type="radio" id="i_sort_name" name="sort" value="name" checked>
+      <label for="i_sort_name">- by name</label><br>
+      <input onchange="displayHighScoreTable()" type="radio" id="i_sort_score" name="sort" value="score">
+      <label for="i_sort_score">- by score</label><br>
+    </form>
+    
+    <br>
+    
+    
+
+    
+    <p>High score outputs:</p>
+    <div class="databaseOutput" id="o_single_hiscore"></div>
+    <br>
+    <div class="databaseOutput" id="o_hiscore_table"></div>
+  </div>
+
+    
+    
+  <!------------------------------------------------------------------------------------>
+
+
+  <!------------------------------------------------------------------------------------>
+  
 
   <script src="./scripts/core/main.js"></script>
 
