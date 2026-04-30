@@ -7,7 +7,7 @@ function fb_login() {
     console.log("fb_login() :: signing in!");
     firebase.auth().signInWithPopup(provider)
     .then((result) => {
-        serializeLoginData(result);
+        parseLoginData(result);
     });
 }
 //------------------------------------------------------------------------------//
@@ -16,7 +16,7 @@ function fb_login() {
 //------------------------------------------------------------------------------//
 //serializeLoginData(result)
 //result: the result of the login
-async function serializeLoginData(result) {
+async function parseLoginData(result) {
     login_result = result;
     if (login_result == null) {
         console.warn("serializeLoginData()::the user has not logged in successfully yet!");
