@@ -10,7 +10,12 @@ function fb_login() {
         serializeLoginData(result);
     });
 }
+//------------------------------------------------------------------------------//
 
+
+//------------------------------------------------------------------------------//
+//serializeLoginData(result)
+//result: the result of the login
 async function serializeLoginData(result) {
     login_result = result;
     if (login_result == null) {
