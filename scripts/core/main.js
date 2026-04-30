@@ -100,6 +100,8 @@ async function displaySingleHighScore(name) {
         const TEXT = "Name: " + name + ", high score: " + SCORE;
 
         HTML_HIGH_SCORE_O_SINGLE.innerHTML = TEXT;
+    } else {
+        return null;
     }
     
 }
