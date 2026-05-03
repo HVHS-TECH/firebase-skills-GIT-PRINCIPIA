@@ -13,7 +13,7 @@
  //path: the path to write to
  //key: the key to the message
  //msg: the message to write
- function fb_write(path, key, msg){
+ async function fb_write(path, key, msg){
     console.log("fb_write(path, msg)\npath = '" + path + "'\nmsg = " + msg);
 
     //Avoid writing to database root and deleting everything
