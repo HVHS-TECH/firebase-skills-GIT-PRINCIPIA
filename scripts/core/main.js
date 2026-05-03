@@ -121,7 +121,6 @@ async function displayHighScoreFromDocument() {
 //------------------------------------------------------------------------------//
 //displayHighScoreTable()
 async function displayHighScoreTable() {
-    var obj = null;
     await fb_read(HIGH_SCORE_LIST, (value)=>{displayTable(value.val());});
 
     function displayTable(json) {
